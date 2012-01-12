@@ -1,5 +1,5 @@
 ## By: Carlos Asmat for MyRobots.com
-## Date: 29/12/2011
+## Creation date: 29/12/2011
 ##
 ## Description: Simple script to define a Robot object,
 ## instantiate many of them, fill them with random data
@@ -18,7 +18,8 @@ and MyRobots.com sync function"""
         """Initialises parameters dictionary and sets teh robot key."""
         self.parameters = {'field1': 0, 'field2': 0, 'field3': 0, 'field4': 0,
                   'field5': 0, 'field6': 0, 'field7': 0, 'field8': 0,
-                  'key':'000000000000000', 'status':'operational'}
+                  'key':'000000000000000', 'status':'operational',
+                  'lat':0, 'long':0, 'elevation':0, 'location':'RobotLand'}
         self.parameters['key'] = key
     
     def sync(self):
@@ -57,16 +58,21 @@ but I don't think you'll like it. ",
               "Come with me if you want to live"]
 
 ## Add the keys for your robots.
-## Obtain teh keys at MyRobots.com
+## Obtain the keys at MyRobots.com
 keys = ['YOUR_KEY_HERE',
         'YOUR_KEY_HERE',
         'YOUR_KEY_HERE',
         'YOUR_KEY_HERE']
 
+## Set the location
+dec_lat = 45.69645
+dec_long = -73.92606
+location = 'Home sweet home'
+
 ## Set the time between updates
 period = 60;
 
-## Set the number of tiems you wnat your robots to be updated
+## Set the number of times you want your robots to be updated
 times = 100
 
 
@@ -74,9 +80,9 @@ times = 100
 ## Sending Robot data to Myrobots.com
 ##################################################################
 
-## Period shuld be > 60s.
-if period < 60:
-    period = 60
+## Period shuld be > 30s.
+if period < 30:
+    period = 30
 
 ## Instantiate a robot for every key in keys.
 robots = [Robot(k) for k in keys]
@@ -96,6 +102,10 @@ for i in range(times):
         r.parameters['field7'] = random.randint(10, 40)
         r.parameters['field8'] = random.randint(10, 40)
         r.parameters['status'] = random.choice(status_msg)
+        r.parameters['lat'] = dec_lat
+        r.parameters['long'] = dec_long
+        r.parameters['elevation'] = random.randint(30, 50)
+        r.parameters['location'] = location
 
         ## Print the robot key for debugging purposes.
         print r.parameters['key']
