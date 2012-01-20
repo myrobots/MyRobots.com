@@ -1,0 +1,180 @@
+﻿<Window x:Class="pcRobot.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="PC-Robot" 
+        SizeToContent="WidthAndHeight"
+        ResizeMode="CanMinimize"
+        Icon="Images/icon.ico"
+        WindowStyle="SingleBorderWindow">
+  <Window.Resources>
+
+    <Style TargetType="TextBlock">
+      <Setter Property="Height" Value="25"/>
+      <Setter Property="Margin" Value="3, 3, 0, 0"/>
+      <Setter Property="Foreground" Value="#E8E8E8"/>
+    </Style>
+
+    <Style TargetType="TextBox">
+      <Setter Property="Height"           Value="25"/>
+      <Setter Property="Margin"           Value="0, 3, 0, 0"/>
+      <Setter Property="Foreground"       Value="#E8E8E8"/>
+      <Setter Property="Background"       Value="#212121"/>
+      <Setter Property="BorderBrush"      Value="#559A7B"/>
+      <Setter Property="BorderThickness"  Value="0"/>
+    </Style>
+
+    <Style TargetType="Border" x:Key="SensorBorder">
+      <Setter Property="Width"            Value="120"/>
+      <Setter Property="Height"           Value="80"/>
+      <Setter Property="Background"       Value="#212121"/>
+      <Setter Property="BorderBrush"      Value="#559A7B"/>
+      <Setter Property="BorderThickness"  Value="2"/>
+      <Setter Property="CornerRadius"     Value="5"/>
+      <Setter Property="Margin"           Value="10"/>
+    </Style>
+
+    <Style TargetType="TextBlock" x:Key="SensorTitle">
+      <Setter Property="Foreground" Value="#999999"/>
+      <Setter Property="FontSize"   Value="12"/>
+      <Setter Property="Margin"     Value="3"/>
+    </Style>
+
+    <Style TargetType="TextBlock" x:Key="SensorValue">
+      <Setter Property="Foreground" Value="#559A7B"/>
+      <Setter Property="FontSize"   Value="18"/>
+      <Setter Property="FontWeight" Value="Bold"/>
+      <Setter Property="Margin"     Value="3"/>
+      <Setter Property="HorizontalAlignment"  Value="Center"/>
+    </Style>
+
+    <Style TargetType="TextBlock" x:Key="MyRobotsStatus">
+      <Setter Property="Foreground" Value="#ECA624"/>
+      <Setter Property="FontSize"   Value="10"/>
+      <Setter Property="Margin"     Value="3"/>
+    </Style>
+
+  </Window.Resources>
+
+  <Window.Background>
+    <ImageBrush ImageSource="Images\myRobots.png" />
+  </Window.Background>
+
+  <Grid Margin="5" Width="500" Background="#120F08" Opacity="0.90">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="10"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="10"/>
+      <RowDefinition Height="Auto"/>
+    </Grid.RowDefinitions>
+
+    <UniformGrid Grid.Row="0" Columns="2">
+      <TextBlock  Text="Robot Key:"/>
+      <TextBox    Text="{Binding RobotKey}"/>
+
+      <TextBlock  Text="Robot Url:"/>
+      <TextBox    Text="{Binding RobotUrl}"/>
+
+      <TextBlock  Text="MyRobots update interval (seconds):"/>
+      <TextBox    Text="{Binding MyRobotsUpdateInterval}"/>
+
+      <TextBlock  Text="Robot Status:"/>
+      <TextBox    Text="{Binding Status}"/>
+    </UniformGrid>
+
+    <WrapPanel Grid.Row="2" HorizontalAlignment="Center">
+      <Border Style="{StaticResource ResourceKey=SensorBorder}">
+        <StackPanel Orientation="Vertical">
+          <TextBlock Text="CPU Usage (%)"       Style="{StaticResource ResourceKey=SensorTitle}"/>
+          <TextBlock Text="{Binding CPUUsage}"  Style="{StaticResource ResourceKey=SensorValue}"/>
+        </StackPanel>
+      </Border>
+
+      <Border Style="{StaticResource ResourceKey=SensorBorder}">
+        <StackPanel Orientation="Vertical">
+          <TextBlock Text="RAM Usage (%)"       Style="{StaticResource ResourceKey=SensorTitle}"/>
+          <TextBlock Text="{Binding RAMUsage}"  Style="{StaticResource ResourceKey=SensorValue}"/>
+        </StackPanel>
+      </Border>
+
+      <Border Style="{StaticResource ResourceKey=SensorBorder}">
+        <StackPanel Orientation="Vertical">
+          <TextBlock Text="Nb Processes"          Style="{StaticResource ResourceKey=SensorTitle}"/>
+          <TextBlock Text="{Binding NbProcesses}" Style="{StaticResource ResourceKey=SensorValue}"/>
+        </StackPanel>
+      </Border>
+
+      <Border Style="{StaticResource ResourceKey=SensorBorder}">
+        <StackPanel Orientation="Vertical">
+          <TextBlock Text="Nb Threads"          Style="{StaticResource ResourceKey=SensorTitle}"/>
+          <TextBlock Text="{Binding NbThreads}" Style="{StaticResource ResourceKey=SensorValue}"/>
+        </StackPanel>
+      </Border>
+
+      <Border Style="{StaticResource ResourceKey=SensorBorder}">
+        <StackPanel Orientation="Vertical">
+          <TextBlock Text="System Up Time" Style="{StaticResource ResourceKey=SensorTitle}"/>
+          <TextBlock Text="{Binding UpTime, StringFormat=d\\:hh\\:mm\\:ss}" Style="{StaticResource ResourceKey=SensorValue}"/>
+        </StackPanel>
+      </Border>
+
+      <Border Style="{StaticResource ResourceKey=SensorBorder}">
+        <StackPanel Orientation="Vertical">
+          <TextBlock Text="Disk I/O (KB/sec)" Style="{StaticResource ResourceKey=SensorTitle}"/>
+          <TextBlock Text="{Binding DiskIO}"  Style="{StaticResource ResourceKey=SensorValue}"/>
+        </StackPanel>
+      </Border>
+
+      <Border Style="{StaticResource ResourceKey=SensorBorder}">
+        <StackPanel Orientation="Vertical">
+          <TextBlock Text="Network I/O (Kbps)"  Style="{StaticResource ResourceKey=SensorTitle}"/>
+          <TextBlock Text="{Binding NetworkIO}" Style="{StaticResource ResourceKey=SensorValue}"/>
+        </StackPanel>
+      </Border>
+
+    </WrapPanel>
+
+    <TextBlock   Grid.Row="4" Text="{Binding MyRobotsUpdateStatus}" Style="{StaticResource ResourceKey=MyRobotsStatus}"/>
+    
+  </Grid>
+  <!--
+  <Grid Margin="5">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="35"/>
+      <RowDefinition Height="35"/>
+      <RowDefinition Height="10"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="40"/>
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="Auto"/>
+      <ColumnDefinition Width="Auto"/>
+      <ColumnDefinition Width="10"/>
+      <ColumnDefinition Width="Auto"/>
+      <ColumnDefinition Width="Auto"/>
+    </Grid.ColumnDefinitions>
+
+    <TextBlock  Grid.Row="0" Grid.Column="0" >Robot Key:</TextBlock>
+    <TextBox    Grid.Row="0" Grid.Column="1" Text="{Binding RobotKey}"/>
+
+    <TextBlock  Grid.Row="0" Grid.Column="3">Url:</TextBlock>
+    <TextBox    Grid.Row="0" Grid.Column="4" Text="{Binding RobotUrl}"/>
+
+    <TextBlock  Grid.Row="1" Grid.Column="0">Robot Status:</TextBlock>
+    <TextBox    Grid.Row="1" Grid.Column="1" Text="{Binding Status}"/>
+
+    <TextBlock Grid.Row="1" Grid.Column="3">MyRobots update interval (seconds):</TextBlock>
+    <TextBox   Grid.Row="1" Grid.Column="4" Text="{Binding MyRobotsUpdateInterval}"/>
+    
+    <StackPanel Grid.Row="3" Grid.ColumnSpan="5">
+      <TextBlock Text="{Binding CPUUsage}"/>
+      <TextBlock Text="{Binding NbProcesses}"/>
+      <TextBlock Text="{Binding NbThreads}"/>
+      <TextBlock Text="{Binding RAMUsage}"/>
+    </StackPanel>
+
+    <TextBlock   Grid.Row="4" Grid.ColumnSpan="5" Text="{Binding MyRobotsUpdateStatus}" HorizontalAlignment="Right"/>
+    
+  </Grid>
+  -->
+</Window>
