@@ -1,37 +1,12 @@
 ## By: Carlos Asmat for MyRobots.com
 ## Creation date: 29/12/2011
 ##
-## Description: Simple script to define a Robot object,
-## instantiate many of them, fill them with random data
-## and syncronysze them with MyRobots.com
+## Description: Script to instantiate many Robot objects, fill
+## them with random data and syncronyze them with MyRobots.com
+## Assumes MyRobots.Py is in teh same directory or reachable by Python
 
 ## Import required libraries
-import httplib, urllib, random, time
-
-class Robot:
-    """Robot Class defines the parameters of a robot 
-and MyRobots.com sync function"""
-    # Latest robot data is stored in parameters dictionary
-    parameters = {}
-
-    def __init__(self, key):
-        """Initialises parameters dictionary and sets teh robot key."""
-        self.parameters = {'field1': 0, 'field2': 0, 'field3': 0, 'field4': 0,
-                  'field5': 0, 'field6': 0, 'field7': 0, 'field8': 0,
-                  'key':'000000000000000', 'status':'operational',
-                  'lat':0, 'long':0, 'elevation':0, 'location':'RobotLand'}
-        self.parameters['key'] = key
-    
-    def sync(self):
-        """Syncs your robot information and prints teh server response."""
-        params = urllib.urlencode(self.parameters)
-        headers = {"Content-type": "application/x-www-form-urlencoded","Accept": "text/plain"}
-        conn = httplib.HTTPConnection("bots.myrobots.com")
-        conn.request("POST", "/update", params, headers)
-        response = conn.getresponse()
-        print response.status, response.reason
-        data = response.read()
-        conn.close()
+import MyRobots, random, time
 
 ##################################################################
 ## Parameters you can edit
@@ -54,7 +29,7 @@ but I don't think you'll like it. ",
               "Hasta la vista baby.",
               "EXTREMINATE!",
               "DELETE!",
-              "MyRobots.com is Live!! Finaly robots can ge a social life",
+              "MyRobots.com is Live!! Finaly robots can get a social life",
               "Come with me if you want to live"]
 
 ## Add the keys for your robots.
@@ -85,7 +60,7 @@ if period < 30:
     period = 30
 
 ## Instantiate a robot for every key in keys.
-robots = [Robot(k) for k in keys]
+robots = [MyRobots.Robot(k) for k in keys]
 
 
 ## Make several updates (as many as specified in times).
@@ -111,7 +86,7 @@ for i in range(times):
         print r.parameters['key']
 
         ## send robot data to MyRobots.com
-        r.sync()
+        r.write()
 
     print '\n\n' ## Print white space number for debugging purposes.
     time.sleep(period)
