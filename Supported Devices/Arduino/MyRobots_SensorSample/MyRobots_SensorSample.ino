@@ -1,7 +1,7 @@
 /***************************************************************
 * Title: MyRobots Sensor Sample
 * Authors: Carlos Asmat
-* Date: 19/05/2010
+* Date: 24/01/2012
 * Licence: GPL v3
 * Description: Sends sensor data via serial communication.
 * URL: www.myrobots.com
