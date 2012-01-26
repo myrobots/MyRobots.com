@@ -2,7 +2,7 @@
 ## Creation date: 24/01/2012
 ##
 ## Description: Listens to the serial port and posts the received data.
-## It uses teh Open Serial Protocol: http://www.myrobots.com/wiki/Open_Serial_Protocol
+## It uses the Open Serial Protocol: http://www.myrobots.com/wiki/Open_Serial_Protocol
 
 ## Import required libraries
 import MyRobots, serial, time
@@ -19,7 +19,7 @@ robot = MyRobots.Robot('') #define robot object
 ##################################################################
 ## Parameters you can edit
 ##################################################################
-times = 1000 ## How many writes to the server
+times = 10000 ## How many writes to the server
 port_name = 'COM3' ## Set it to your prefered port
 
 ##################################################################
@@ -28,7 +28,8 @@ port_name = 'COM3' ## Set it to your prefered port
 #open serial port
 port = serial.Serial(port_name, 19200, timeout=1)
 
-for i in range(1000):
+for i in range(times):
+    print i
     while(port.read() != start_byte[0]):
         time.sleep (0.1)
 

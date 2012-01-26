@@ -22,7 +22,7 @@
 #include <EasyTransfer.h>
 #define max_feeds 8
 #define baud_rate 19200
-#define ROBOT_KEY "DADA64AFB283413F"
+#define ROBOT_KEY "YOUR KEY HERE"
 #define update_delay 15000
 
 //Analogue Sensors
