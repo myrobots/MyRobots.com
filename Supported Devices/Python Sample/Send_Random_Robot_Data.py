@@ -34,10 +34,9 @@ but I don't think you'll like it. ",
 
 ## Add the keys for your robots.
 ## Obtain the keys at MyRobots.com
-keys = ['YOUR_KEY_HERE',
-        'YOUR_KEY_HERE',
-        'YOUR_KEY_HERE',
-        'YOUR_KEY_HERE']
+keys = ['YOUR KEY HERE',
+        'YOUR KEY HERE',
+        'YOUR KEY HERE']
 
 ## Set the location
 dec_lat = 45.69645
@@ -45,10 +44,10 @@ dec_long = -73.92606
 location = 'Home sweet home'
 
 ## Set the time between updates
-period = 60;
+period = 15;
 
 ## Set the number of times you want your robots to be updated
-times = 100
+times = 10000
 
 
 ##################################################################
@@ -56,8 +55,8 @@ times = 100
 ##################################################################
 
 ## Period shuld be > 30s.
-if period < 30:
-    period = 30
+if period < 15:
+    period = 15
 
 ## Instantiate a robot for every key in keys.
 robots = [MyRobots.Robot(k) for k in keys]

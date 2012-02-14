@@ -28,8 +28,11 @@ port_name = 'COM3' ## Set it to your prefered port
 #open serial port
 port = serial.Serial(port_name, 19200, timeout=1)
 
-for i in range(times):
-    print i
+##for i in range(times):
+n=0
+while(True):
+    print n
+    n=n+1
     while(port.read() != start_byte[0]):
         time.sleep (0.1)
 
