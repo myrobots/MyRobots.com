@@ -7,14 +7,14 @@
 * URL: http://www.myrobots.com
 *
 * Description:
-* Intended to be used with the an arduiono board supplemented by
+* Intended to be used with an arduiono board supplemented by
 * an Etehrnet shield and XBee connectivity.
 *
 * This sketch allows to send information from a robot or a sensor
 * to the Myrobots.com Server. The information can come wirelessly
 * via Xbee.
 *
-* This sketch requires the EasyTransfer Library available he:
+* This sketch requires the EasyTransfer Library available here:
 * http://www.billporter.info/easytransfer-arduino-library/
 * 
 ***************************************************************/
@@ -28,7 +28,7 @@
 #define max_fails 3
 
 //Communication
-#define baud_rate 19200
+#define baud_rate 9600
 
 // Local Network Settings
 //See the paper lable for the MAC address
@@ -51,7 +51,9 @@ EthernetClient client;
 struct RECEIVE_DATA_STRUCTURE
 {
   char command;
+  int robotID;
   char key[17];
+  int feeds;
   int data[max_feeds];
   int coordinates[3];
   char status_str[70];

@@ -21,7 +21,7 @@ and MyRobots.com sync function"""
         self.parameters['key'] = key
     
     def write(self):
-        """Syncs your robot information and prints teh server response."""
+        """Syncs your robot information and prints the server response."""
         params = urllib.urlencode(self.parameters)
         headers = {"Content-type": "application/x-www-form-urlencoded","Accept": "text/plain"}
         conn = httplib.HTTPConnection("bots.myrobots.com")
