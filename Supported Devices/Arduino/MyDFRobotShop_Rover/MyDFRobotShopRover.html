@@ -1,0 +1,105 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>    
+  <title>MyDFrobotShop Rover</title>
+  <link href='http://fonts.googleapis.com/css?family=Orbitron:400,500,700,900' rel='stylesheet' type='text/css'>
+
+  <style media="screen" type="text/css">
+    
+    body{
+      font-family:Orbitron, sans-serif;
+      line-height: 35px;
+      text-align: center;
+      background: rgb(255,255,255) no-repeat;
+      background: rgb(229,229,229) no-repeat;
+      background: -moz-linear-gradient(top,  rgb(229,229,229) 0%, rgb(255,255,255) 100%) no-repeat;
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb(229,229,229)), color-stop(100%,rgb(255,255,255)));
+      background: -webkit-linear-gradient(top,  rgb(229,229,229) 0%,rgb(255,255,255) 100%);
+      background: -o-linear-gradient(top,  rgb(229,229,229) 0%,rgb(255,255,255) 100%);
+      background: -ms-linear-gradient(top,  rgb(229,229,229) 0%,rgb(255,255,255) 100%);
+      background: linear-gradient(top,  rgb(229,229,229) 0%,rgb(255,255,255) 100%);
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e5e5e5', endColorstr='#ffffff',GradientType=0 );
+
+
+    }
+    
+    h1{
+       background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAKUlEQVQImWN48/H7fxi+dvvhfwZkzpuP3yECMM6bj9//MyBz3nz8/h8A+4E8KXwhhUMAAAAASUVORK5CYII=);
+      border: 1px solid #D4D7D9;
+      border-radius: 5px;
+      color: #58636D;
+      line-height:55px;
+    }
+    
+    fieldset{
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 20px;
+    color: #FFF;
+    font-weight:bold;
+    border-radius: 10px;
+    border: 0 none;
+    
+    background: rgb(69,72,77);
+    background: -moz-linear-gradient(top,  rgb(69,72,77) 0%, rgb(0,0,0) 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb(69,72,77)), color-stop(100%,rgb(0,0,0)));
+    background: -webkit-linear-gradient(top,  rgb(69,72,77) 0%,rgb(0,0,0) 100%);
+    background: -o-linear-gradient(top,  rgb(69,72,77) 0%,rgb(0,0,0) 100%);
+    background: -ms-linear-gradient(top,  rgb(69,72,77) 0%,rgb(0,0,0) 100%);
+    background: linear-gradient(top,  rgb(69,72,77) 0%,rgb(0,0,0) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=0 );
+
+    }
+    .ServerReply{
+      height: 36px;
+      width: 100px;
+      border: 0 none;
+      background: none repeat scroll 0 0 #FFFFFF;
+      border-radius: 5px;
+    }
+    
+    .wrapper{
+      width: 450px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+  </style>
+</head>
+
+
+<body>
+  
+  <div class="wrapper">
+    <h1>MyDFRobotShop Rover</h1>
+
+    <fieldset>
+      <form target="MyRobots" name="input" action="http://bots.myrobots.com/update" method="get">
+        Robot Key: <input type="text" name="key" value="Paste your key here" /><br />
+        Speed: <input type="text" name="field2" value="255" />
+        Blink: <input type="text" name="field1" value="500"/>
+        
+        <br />
+        
+        <input type="radio" name="field3" value="4" /> Left
+        <input type="radio" name="field3" value="3" /> Right
+
+        <input type="radio" name="field3" value="1" /> Forward
+        <input type="radio" name="field3" value="2" /> Back
+        <br />
+        <input type="radio" name="field3" value="0" /> Stop
+        <br />
+        <input type="submit" value="Send" />
+      </form>
+    </fieldset>
+
+    <fieldset>
+    Server Reply: <iframe class="ServerReply" name="MyRobots" src="">Your browser does not support iframes. Too bad for you.</iframe> 
+    </fieldset>
+
+  </div>
+
+</body>
+</html>

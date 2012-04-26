@@ -1,5 +1,5 @@
 /***************************************************************
-* Title: MyRobots Sersor Posting Sample
+* Title: MyDFRobotShop Rover Control sample code
 * Authors: Carlos Asmat for MyRobots.com
 * Date: 14/12/2010
 * Licence: GPL v3
@@ -24,14 +24,14 @@
 #define max_feeds 8
 #define baud_rate 9600
 #define ROBOT_KEY "PASTE YOUR KEY HERE"
-#define ROBOT_ID 365 //set your robot ID
-#define update_delay_max 35000 // max update rate limit
-#define update_delay_min 30000 // min update rate limit
+#define ROBOT_ID 688 //set your robot ID
+#define update_delay_max 6000 // max update rate limit
+#define update_delay_min 5000 // min update rate limit
 
 //Analogue Sensors
 int sensor[] = {A0, A1, A2, A3, A4, A5}; //Analogue sensor pins
 String robotKey = ROBOT_KEY;
-String status_message = "I am trying to read a feed. What will I get??????????????????????????"; //max len 70 char
+String status_message = "I am your DFRobotShop Rover. What is your next command?";
 long update_delay=15000;
 
 
@@ -44,6 +44,15 @@ int ledState = LOW;             // ledState used to set the LED
 unsigned long lastBlink = 0;
 unsigned long lastUpdate = 0;  
 int blinkPeriod = 1000;
+
+//Define Motors Pins
+const int E1 = 6; //M1 Speed Control
+const int E2 = 5; //M2 Speed Control
+const int M1 = 8; //M1 Direction Control
+const int M2 = 7; //M2 Direction Control
+
+//Define Motor Speeds.
+int pwmSpeed = 255; //255 is maximum speed
 
 struct ROBOT_DATA_STRUCTURE
 {
@@ -63,6 +72,10 @@ ROBOT_DATA_STRUCTURE RobotRX;
 void setup()
 {
   Serial.begin(baud_rate);
+  
+  for(int i=5; i<=8; i++)
+    pinMode(i, OUTPUT);
+  
   //start the library
   ETin.begin(details(RobotRX), &Serial);
   ETout.begin(details(RobotTX), &Serial);
@@ -83,8 +96,7 @@ void loop(){
  //Blink LED in a non-blocking way
   if(currentMillis - lastBlink > blinkPeriod) {
     // save the last time you blinked the LED 
-    lastBlink = currentMillis; 
-    update_delay = random(update_delay_min, update_delay_max); //set update rate to a random value to avoid collitions 
+    lastBlink = currentMillis;   
 
     // if the LED is off turn it on and vice-versa:
     if (ledState == LOW)
@@ -100,11 +112,78 @@ void loop(){
   if(currentMillis - lastUpdate > update_delay){
     ETout.sendData(); //Send Read command
     lastUpdate = currentMillis;
+    update_delay = random(update_delay_min, update_delay_max); //set update rate to a random value to avoid collitions 
+
+    
   }
   
   //Check the received data and update the blinking rate
   if(ETin.receiveData()){
     if(RobotRX.robotID == ROBOT_ID) //check the message is adressed to you
+    {
       blinkPeriod = RobotRX.data[0];
+      pwmSpeed = RobotRX.data[1];
+      
+      switch(RobotRX.data[2]) // Perform an action depending on the command
+      {
+        case 1://Move Forward
+          forward (pwmSpeed, pwmSpeed);
+        break;
+        
+        case 2://Move Backwards
+          reverse (pwmSpeed,pwmSpeed);
+        break;
+        
+        case 4://Turn Left
+          left (pwmSpeed,pwmSpeed);
+        break;
+        
+        case 3://Turn Right
+          right (pwmSpeed,pwmSpeed);
+        break;
+        
+        default:
+          stop();
+        break;
+      }
+    }
   }
+}
+
+// Motor Driving Fucntions
+void stop(void) //Stop
+{
+  digitalWrite(E1,LOW);
+  digitalWrite(E2,LOW);
+}
+
+void forward(char a,char b)
+{
+  analogWrite (E1,a);
+  digitalWrite(M1,LOW);
+  analogWrite (E2,b);
+  digitalWrite(M2,LOW);
+}
+void reverse (char a,char b)
+{
+  analogWrite (E1,a);
+  digitalWrite(M1,HIGH);
+  analogWrite (E2,b);
+  digitalWrite(M2,HIGH);
+}
+
+void left (char a,char b)
+{
+  analogWrite (E1,a);
+  digitalWrite(M1,HIGH);
+  analogWrite (E2,b);
+  digitalWrite(M2,LOW);
+}
+
+void right (char a,char b)
+{
+  analogWrite (E1,a);
+  digitalWrite(M1,LOW);
+  analogWrite (E2,b);
+  digitalWrite(M2,HIGH);
 }
