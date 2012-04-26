@@ -3,17 +3,20 @@
 * Authors: Carlos Asmat for MyRobots.com
 * Date: 14/12/2010
 * Licence: GPL v3
-* Description: Read a MyRobots.com Feed and Blink a light accordingly
+* Description: Read a MyRobots.com feed and drive a DFRobotShop Rover accordingly.
+*              
 * URL: http://www.myrobots.com
 *
 * Description:
-* Intended to be used with an arduiono board along with an XBee
+* Intended to be used with a DFRobotShop Rover arduiono board along with an XBee
 * module for wireless communication.
 *
 * This sketch allows to retrieve data from the Myrobots.com Server.
 * The communication must go through a Serial-to Etehrnet Gateway
 * such as the MyRobots Connect:
 * http://www.robotshop.com/ProductInfo.aspx?pc=RB-Myr-01
+*
+* You can use the provided MyDFRobotShopRover.html file to drive your rover
 *
 * This sketch requires the EasyTransfer Library available here:
 * http://www.billporter.info/easytransfer-arduino-library/
