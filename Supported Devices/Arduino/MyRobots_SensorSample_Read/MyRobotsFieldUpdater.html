@@ -3,7 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>    
-  <title>MyDFrobotShop Rover</title>
+  <title>MyRobots Field Updater</title>
   <link href='http://fonts.googleapis.com/css?family=Orbitron:400,500,700,900' rel='stylesheet' type='text/css'>
 
   <style media="screen" type="text/css">
@@ -73,22 +73,29 @@
 <body>
   
   <div class="wrapper">
-    <h1>MyDFRobotShop Rover</h1>
+    <h1>MyRobots Field Updater</h1>
 
     <fieldset>
       <form target="MyRobots" name="input" action="http://bots.myrobots.com/update" method="get">
         Robot Key: <input type="text" name="key" value="Paste your key here" /><br />
         <br />
-        Speed: <input type="text" name="field2" value="255" />
-        Blink: <input type="text" name="field1" value="500"/>
+        Field 1: <input type="text" name="field1" value="" /><br />
+        Field 2: <input type="text" name="field2" value="" /><br />
+        Field 3: <input type="text" name="field3" value="" /><br />
+        Field 4: <input type="text" name="field4" value="" /><br />
+        Field 5: <input type="text" name="field5" value="" /><br />
+        Field 6: <input type="text" name="field6" value="" /><br />
+        Field 7: <input type="text" name="field7" value="" /><br />
+        Field 8: <input type="text" name="field8" value="" /><br />
         <br />
-        <input type="radio" name="field3" value="4" /> Left
-        <input type="radio" name="field3" value="3" /> Right
-        <input type="radio" name="field3" value="1" /> Forward
-        <input type="radio" name="field3" value="2" /> Back
+        Latitude: <input type="text" name="lat" value="" /><br />
+        Longitude: <input type="text" name="long" value="" /><br />
+        Elevation: <input type="text" name="elevation" value="" /><br />
         <br />
-        <input type="radio" name="field3" value="0" /> Stop
+        Status: <input type="text" name="status" value="" /><br />
+        
         <br />
+        
         <input type="submit" value="Send" />
       </form>
     </fieldset>

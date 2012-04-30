@@ -15,6 +15,15 @@
 * such as the MyRobots Connect:
 * http://www.robotshop.com/ProductInfo.aspx?pc=RB-Myr-01
 *
+* To test the communication, you can update field1 of your robot
+* in order to set the LED blink period by going to the following
+* link in your browser:
+*
+* http://bots.myrobots.com/update?key=PASTE YOUR KEY HERE&field1=50
+*
+* In the above exaemple, 50 is teh blinking period and it will make
+* your LED blink very fast.
+*
 * This sketch requires the EasyTransfer Library available here:
 * http://www.billporter.info/easytransfer-arduino-library/
 * 

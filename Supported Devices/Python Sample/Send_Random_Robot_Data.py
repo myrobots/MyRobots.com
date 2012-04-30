@@ -34,12 +34,12 @@ but I don't think you'll like it. ",
 
 ## Add the keys for your robots.
 ## Obtain the keys at MyRobots.com
-keys = ['F50211DB298546BC',
-        '39C7D9B4ABFE4088',
-        '09228320383D4471',
-        'FA35A7389BBC4626',
-        '8036C9B6EDF74C16',
-        '59BFBF608AF54B9F']
+keys = ['PASTE YOUR KEY',
+        'PASTE YOUR KEY',
+        'PASTE YOUR KEY',
+        'PASTE YOUR KEY',
+        'PASTE YOUR KEY',
+        'PASTE YOUR KEY']
 
 ## Set the location
 dec_lat = 45.69645
