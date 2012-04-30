@@ -24,12 +24,15 @@
 #define max_feeds 8
 #define baud_rate 9600
 #define ROBOT_KEY "PASTE YOUR KEY HERE"
-#define update_delay 15000
+#define ROBOT_ID 365 //set your robot ID
+#define update_delay_max 15000 // max update rate limit
+#define update_delay_min 20000 // min update rate limit
 
 //Analogue Sensors
 int sensor[] = {A0, A1, A2, A3, A4, A5}; //Analogue sensor pins
 String robotKey = ROBOT_KEY;
 String status_message = "I am sending a 70 char message. This is fairly long!!!!!!!!!!!!!!!!!!";
+long update_delay=15000;
 
 //Create Easy Transfer Object
 EasyTransfer ETout; 
@@ -39,7 +42,7 @@ struct ROBOT_DATA_STRUCTURE
   char command;
   int robotID;
   char key[17];
-  char feeds;
+  int feeds;
   int data[max_feeds];
   int coordinates[3];
   char status_str[70];
@@ -67,7 +70,7 @@ void setup()
 void loop(){
 
   updateRobot();
-  delay(update_delay);
+  delay(random(update_delay_min, update_delay_max));
 }
 
 void updateRobot()
@@ -86,10 +89,10 @@ void updateRobot()
   for (i; i < max_feeds; i++)
   {
     RobotTX.data[i] = analogRead(sensor[0]); //fill the rest of the fields with arbtrary data
-    //RobotTX.feeds |= 0x01 << i;  //uncomment this line if the information in the rest of the data array is relevant.
+    RobotTX.feeds |= 0x01 << i;  //uncomment this line if the information in the rest of the data array is relevant.
   }
   
-  RobotTX.robotID = 462; //this ID is irrelevant in this case but it is good practice to set it.
+  RobotTX.robotID = ROBOT_ID; //this ID is irrelevant in this case but it is good practice to set it.
   
   //Set the coordinates as you desire.
   RobotTX.coordinates[0]=45; 

@@ -38,7 +38,7 @@ String status_message = "I am your DFRobotShop Rover. What is your next command?
 long update_delay=15000;
 
 
-//create object
+//Create object
 EasyTransfer ETin; 
 EasyTransfer ETout; 
 
